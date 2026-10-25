@@ -14,13 +14,13 @@ Adafruit public product lookup is implemented at /api/catalog/adafruit?id=3777. 
 
 Mouser Search and DigiKey Product Information require provider access credentials/OAuth and are NOT connected. Intended for catalog electronic parts. Add server-side integrations after selecting and registering a provider; store keys as hosted runtime secrets, never browser inputs, VITE variables, source files or chat text.
 
-Nessie is NOT connected. Request sponsor sandbox access, verify the current host and account/transaction semantics, then implement a server-side read. Make mock versus live status explicit. No purchases or real payments are performed by this demo.
+No purchases or real payments are performed by this demo.
 
 The LLM is NOT connected. A future model may draft a requirements checklist or tentative BOM and explain verified calculations. It must not invent prices, compatibility, process time, strength or supplier availability. Current starters and suggestions are rule based.
 
 ## Next two checkpoints
 1. Reproduce one complete assembly cost independently, including packs and inventory. Read and apply an actual catalog price to its exact component.
-2. Obtain one custom-manufacturing quote for a specified part/revision/quantity and compare it with the operation-based estimate. Confirm a Nessie read affects affordability before adding approvals.
+2. Obtain one custom-manufacturing quote for a specified part/revision/quantity and compare it with the operation-based estimate.
 
 ## Current demo boundaries
 BOM projects persist in this browser only. CAD geometry metadata persists; uploaded CAD bytes do not. Capacity is a rough station bound, not a factory digital twin. Existing stock book value is excluded: the main total represents new run cash. Supplier shipping/tax and unspecified inspection/tooling need explicit inputs.
@@ -28,4 +28,4 @@ BOM projects persist in this browser only. CAD geometry metadata persists; uploa
 ## Hyphenate focus
 The primary system fills manufacturing purchasing analyst and accounts payable reviewer seats for a hardware startup. The Finance controls tab demonstrates request/quote eligibility, separate simulated requester and approver personas, an exact approved snapshot, invoice holds, duplicate-ID checks, rejection and browser-local evidence history. All suppliers and actions are simulated. This is not production authorization or an immutable audit log.
 
-Priority upgrades: backend-owned workflow state, authenticated distinct users and segregation of duties, append-only records, scheduled/event-driven intake, real supplier records, and adversarial exception tests. Nessie is optional. BOM and CAD provide purchasing context rather than being the whole demo.
+Priority upgrades: backend-owned workflow state, authenticated distinct users and segregation of duties, append-only records, scheduled/event-driven intake, real supplier records, and adversarial exception tests. BOM and CAD provide purchasing context rather than being the whole demo.

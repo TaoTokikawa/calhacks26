@@ -1,0 +1,49 @@
+.voice-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.voice-banner{margin:0 0 22px}
+.voice-queue{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.voice-row{display:grid;grid-template-columns:minmax(0,1fr) 92px 86px 98px;align-items:center;gap:12px;padding:11px 12px;border:1px solid #2e3b2b;border-radius:7px;background:#151d16;cursor:pointer}
+.voice-row.selected{border-color:#7fa35e;background:#1e291b}
+.voice-row b{text-align:right;font-size:12px;color:#d3e0c9}
+.voice-row .tag{margin-left:0;justify-self:end}
+.voice-who strong{display:block;font-size:11px;color:#d3e0c9}
+.voice-who em{font-style:normal;color:#6e8665;font-weight:400}
+.voice-who small{display:block;margin-top:4px;font-size:9px;color:#80907f}
+.voice-qty{position:relative}
+.voice-qty input{width:100%;height:30px;background:#141c15;border:1px solid #34442f;border-radius:5px;color:#d0ddc8;padding:0 38px 0 8px;font-size:10px;outline:none}
+.voice-qty input:focus{border-color:#b1d784}
+.voice-qty small{position:absolute;right:7px;top:9px;font-size:8px;color:#6e8665;pointer-events:none}
+.voice-span{grid-column:1/-1}
+.keys-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.keys-code{background:#111612;border:1px solid #2e3b2b;border-radius:6px;padding:11px 13px;color:#c0ec88;font-size:11px;margin:14px 0 0;overflow-x:auto}
+.card code{background:#111612;border:1px solid #2e3b2b;border-radius:4px;padding:1px 5px;color:#c9dcb8;font-size:.92em}
+.keys-test{display:flex;align-items:center;gap:6px;padding:12px 0 0}
+.invoice-parties{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 18px}
+.invoice-parties small{display:block;font-size:8px;letter-spacing:.6px;text-transform:uppercase;color:#6e8665;margin-bottom:5px}
+.invoice-parties b{display:block;font-size:11px;color:#d3e0c9}
+.invoice-parties span{display:block;font-size:9px;color:#80907f;margin-top:3px}
+.invoice-lines{border:1px solid #2e3b2b;border-radius:7px;overflow-x:auto}
+.invoice-line{display:grid;grid-template-columns:minmax(150px,1fr) 46px 76px 86px;gap:10px;padding:10px 12px;font-size:10px;color:#a9baa0;border-top:1px solid #2a3527}
+.invoice-line span:not(:first-child){text-align:right}
+.invoice-line.head{border-top:0;background:#151d16;font-size:8px;letter-spacing:.6px;text-transform:uppercase;color:#6e8665}
+.invoice-doc .budgetmath{margin:10px 0 6px}
+.voice-script{border-top:1px solid #2e3b2b;margin-top:8px;padding-top:6px}
+.voice-script .cardheading{padding-left:0;padding-right:0}
+.voice-script textarea{width:100%;resize:vertical;background:#141c15;border:1px solid #34442f;border-radius:6px;color:#d0ddc8;padding:10px 11px;font:inherit;font-size:11px;line-height:1.6;outline:none}
+.voice-script textarea:focus{border-color:#b1d784;box-shadow:0 0 0 2px #b1d78420}
+.voice-wave{display:flex;align-items:center;gap:3px;height:34px;margin-top:14px}
+.voice-wave i{flex:1;max-width:6px;height:30%;background:#c0ec88;border-radius:3px;animation:voice-bar .7s ease-in-out infinite alternate}
+@keyframes voice-bar{to{height:100%}}
+.spin{animation:voice-spin 1s linear infinite}
+@keyframes voice-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.voice-wave i,.spin{animation:none}}
+@media(max-width:1100px){.voice-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.voice-row{grid-template-columns:minmax(0,1fr) 84px;}.voice-row b{text-align:left}.invoice-parties{grid-template-columns:1fr}}
+.voice-demo{display:inline-block;margin-left:7px;vertical-align:1px}
+.voice-synced{display:flex;align-items:center;gap:5px;height:30px;padding:0 8px;border:1px dashed #4a6235;border-radius:5px;color:#bada96;font-size:10px}
+.voice-synced small{position:static;margin-left:auto}
+.invoice-spec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;padding:12px;margin-bottom:14px;border:1px solid #2e3b2b;border-radius:7px;background:#151d16}
+.invoice-spec small{display:block;font-size:8px;letter-spacing:.6px;text-transform:uppercase;color:#6e8665;margin-bottom:4px}
+.invoice-spec b{display:block;font-size:10px;color:#d3e0c9;font-weight:550;overflow-wrap:anywhere}
+.invoice-spec span{display:block;font-size:9px;color:#80907f;margin-top:2px}
+.invoice-line>span:first-child small{display:block;font-size:9px;color:#6e8665;margin-top:3px}
+@media(max-width:650px){.invoice-spec{grid-template-columns:1fr 1fr}}

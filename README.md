@@ -26,7 +26,7 @@ GET /api/catalog/adafruit?id=3777 retrieves a specific Adafruit product. Product
 
 A catalog observation is not a binding quote, physical compatibility check, confirmed lead time or inventory reservation. Applying data requires user review and does not rename the original engineering requirement. Lead time remains manually entered. Failures leave current price assumptions unchanged.
 
-Mouser, DigiKey, Nessie and LLM integrations are not connected. /api/integrations states this explicitly. Store future credentials using hosted server secrets, never VITE variables, localStorage, source files, BOM fields or chat. Provider documentation is linked in the Team & data tab. No API credential is needed for the implemented public lookup.
+Mouser, DigiKey and LLM integrations are not connected. /api/integrations states this explicitly. Store future credentials using hosted server secrets, never VITE variables, localStorage, source files, BOM fields or chat. Provider documentation is linked in the Team & data tab. No API credential is needed for the implemented public lookup.
 
 ## Cost conventions
 
@@ -42,3 +42,8 @@ backend/ retains the earlier standalone FastAPI/trimesh prototype for local expe
 
 ## Hyphenate workflow
 The default Finance controls page is a simulated manufacturing finance workflow. It automatically evaluates quotation revision, material, quantity, expiry and total budget, selects the cheapest eligible offer, blocks the requester demo persona from approving, snapshots approved records, reconciles a later invoice and flags duplicate invoice IDs. Rejections return the request for clarification. Draft a requirement from a BOM component to connect the engineering model to purchasing. Records persist only in browser localStorage; personas are simulated, not authenticated roles. Audit history is editable client data rather than an immutable log. No payment, bank transfer or real supplier order is executed. Production needs server-owned records and authenticated segregation of duties.
+
+## Cartesia voice invoicing
+The **Voice invoicing** page prices each (fictional) customer order from the current single-part STL estimate, adds your margin, tax and payment terms, builds an invoice, and reads it aloud using Cartesia Sonic text-to-speech. Playback happens in the browser only: no phone calls are placed and no real phone numbers are stored. "Run automatic voice invoicing" generates and plays every invoice in the queue in turn. Each script can be edited, and the audio can be downloaded as an MP3.
+
+API keys: copy `.dev.vars.example` to `.dev.vars` (gitignored), set `CARTESIA_API_KEY`, then restart `npm run dev`. For a deployed site, set the same name as a host secret. The **API keys** page shows whether the key is set and has a voice test. Server code calls Cartesia (`/tts/bytes`, `/voices`), so the browser never sees the key. Invoice logic is in frontend/src/invoiceModel.ts, the server proxy in lib/cartesia.ts and app/api/voice/.

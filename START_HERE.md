@@ -39,7 +39,7 @@ The published source passed 21 automated tests and the TypeScript and production
 
 The current website uses React/TypeScript with a Vinext server. The Python backend/ directory is the earlier standalone FastAPI prototype; it is not required to run this website. Do not start a separate frontend package: frontend/index.html is also an earlier Vite entrypoint; use the root npm scripts and app/page.tsx.
 
-All supplier finance cases and approval personas are simulated. Finance history and project plans persist in your browser only; they are not production authorization or tamper-proof server records. No money or supplier order is sent. Nessie and LLM integrations are not connected. The public Adafruit lookup requires no key, but supplier/network availability can affect it; failures do not update prices.
+All supplier finance cases and approval personas are simulated. Finance history and project plans persist in your browser only; they are not production authorization or tamper-proof server records. No money or supplier order is sent. LLM integrations are not connected. The public Adafruit lookup requires no key, but supplier/network availability can affect it; failures do not update prices.
 
 CAD measurements do not verify strength, manufacturing time, fit or process feasibility. Manufacturing costs are preliminary assumptions unless explicitly replaced with a documented quote/catalog observation.
 
