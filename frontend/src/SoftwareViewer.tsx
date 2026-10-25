@@ -1,0 +1,13 @@
+import {useMemo,useState} from 'react';
+import type {BufferGeometry} from 'three';
+export function SoftwareViewer({mesh,wire}:{mesh:BufferGeometry|null;wire:boolean}){
+ const [rotation,setRotation]=useState({a:.65,e:.55});const [drag,setDrag]=useState<{x:number;y:number;a:number;e:number}|null>(null);const [zoom,setZoom]=useState(1);
+ const faces=useMemo(()=>{
+  if(!mesh)return [];mesh.computeBoundingBox();const box=mesh.boundingBox!;const cx=(box.min.x+box.max.x)/2,cy=(box.min.y+box.max.y)/2,cz=(box.min.z+box.max.z)/2;const max=Math.max(box.max.x-box.min.x,box.max.y-box.min.y,box.max.z-box.min.z);const s=260/max*zoom;const p=mesh.getAttribute('position');const ca=Math.cos(rotation.a),sa=Math.sin(rotation.a),ce=Math.cos(rotation.e),se=Math.sin(rotation.e);
+  const project=(i:number)=>{const x=p.getX(i)-cx,y=p.getY(i)-cy,z=p.getZ(i)-cz;return [(ca*x+sa*y)*s,(-se*sa*x+se*ca*y+ce*z)*s,(ce*sa*x-ce*ca*y+se*z)*s]};
+  const result=[];const stride=Math.max(1,Math.ceil(p.count/3/7000));
+  for(let i=0;i<p.count;i+=3*stride){const v=[project(i),project(i+1),project(i+2)];const a=v[1].map((x,j)=>x-v[0][j]),b=v[2].map((x,j)=>x-v[0][j]);const nx=a[1]*b[2]-a[2]*b[1],ny=a[2]*b[0]-a[0]*b[2],nz=a[0]*b[1]-a[1]*b[0];const n=Math.hypot(nx,ny,nz)||1;const intensity=.55+.35*Math.abs((nx*-.3+ny*.6+nz*.74)/n);const c=Math.round(intensity*205);result.push({points:v.map(v=>`${250+v[0]},${160-v[1]}`).join(' '),depth:v.reduce((a,b)=>a+b[2],0)/3,color:`rgb(${c},${Math.round(c*1.04)},${Math.round(c*1.01)})`})}
+  return result.sort((a,b)=>a.depth-b.depth)
+ },[mesh,rotation,zoom]);
+ return <div className="software-viewer"><svg role="img" aria-label="Interactive software-rendered 3D mesh preview. Drag to rotate." viewBox="0 0 500 320" onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);setDrag({x:e.clientX,y:e.clientY,...rotation})}} onPointerMove={e=>{if(drag)setRotation({a:drag.a+(e.clientX-drag.x)*.008,e:Math.max(-1.3,Math.min(1.3,drag.e+(e.clientY-drag.y)*.008))})}} onPointerUp={()=>setDrag(null)} onPointerCancel={()=>setDrag(null)} onWheel={e=>setZoom(old=>Math.max(.3,Math.min(3,old-e.deltaY*.001)))}><defs><pattern id="software-grid" width="30" height="30" patternUnits="userSpaceOnUse" patternTransform="rotate(25) skewX(-30)"><path d="M30 0H0V30" fill="none" stroke="#2d3d2f" strokeWidth=".5"/></pattern></defs><rect x="0" y="155" width="500" height="165" fill="url(#software-grid)" opacity=".65"/><ellipse cx="250" cy="245" rx="110" ry="20" fill="#0c140c" opacity=".45"/>{faces.map((f,i)=><polygon key={i} points={f.points} fill={wire?'#152518':f.color} stroke={wire?'#99bb7d':f.color} strokeWidth={wire?.45:.4} strokeLinejoin="round"/>)}</svg><span className="software-badge">Software 3D preview</span></div>
+}

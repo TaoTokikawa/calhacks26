@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+*.tsbuildinfo
+.sites-runtime/
+.next/
+.vinext/
+.wrangler/
+.dev.vars
